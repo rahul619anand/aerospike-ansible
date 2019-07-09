@@ -1,0 +1,9 @@
+---
+- name: Start aerospike service Centos/RedHat 7 and Amazon
+  systemd:
+    name: aerospike
+    state: restarted
+    enabled: yes
+  when: (ansible_distribution == 'CentOS') or
+        (ansible_distribution == 'Amazon')
+  listen: start aerospike

@@ -1,0 +1,38 @@
+---
+# Download and Service Vars
+aerospike_boot_enabled: true
+aerospike_version: 4.5.3.2
+aerospike_source_directory: /usr/local/src
+aerospike_log_directory: /var/log/aerospike
+
+# Aerospike configuration Vars
+aerospike_cluster_size: 5
+aerospike_service_threads: 24
+aerospike_transaction_queues: 24
+aerospike_transaction_threads: 24
+aerospike_proto_fd_max: 15000
+aerospike_proto_fd_idle_ms: 60000
+aerospike_heartbeat_interval: 150
+aerospike_heartbeat_timeout: 50
+paxos_single_replica_limit: 1
+migrate_max_num_incoming: 1
+
+## Namespace configuration Vars
+aerospike_namespaces:
+  - name: user_profile
+    replication_factor: 2
+    memory_size: 128G
+    migrate_sleep: 1000
+    default-ttl: 0
+    storage_engine:
+      devices:
+        - /dev/nvme1n1p1
+        - /dev/nvme1n1p2
+        - /dev/nvme1n1p3
+        - /dev/nvme2n1p1
+        - /dev/nvme2n1p2
+        - /dev/nvme2n1p3
+      data_in_memory: false
+      write_block_size: 1M
+      max_write_cache: 2047M
+    storage_ttl: 0

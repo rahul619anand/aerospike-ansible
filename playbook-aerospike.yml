@@ -1,0 +1,16 @@
+- name: Gather ec2 facts
+  hosts: tag_role_aerospike
+  gather_facts: yes
+  roles:
+    - roles/ec2facts
+
+
+- name: Install aerospike
+  hosts: tag_role_aerospike
+  remote_user: root
+  become: yes
+  strategy: parallel_regions
+  vars:
+    region_wise_parallel_hosts: 1
+  roles:
+    - aerospike
